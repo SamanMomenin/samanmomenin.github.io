@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Saman Momenin — Digital Electronics Engineer</title>
 <!-- Deploy to Netlify → Site settings → Change site name → e.g. samanmomenin.netlify.app -->
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Sora:wght@300;400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700&family=Lalezar&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -24,9 +24,9 @@
   --blue-pale:#B8D4E8;
   --white:#F0EDE8;
   --muted:#8A8F9B;
-  --font-serif:'Fraunces',serif;
-  --font-sans:'Sora',sans-serif;
-  --font-display:'Sora',sans-serif;
+  --font-serif:'Inter',sans-serif;
+  --font-sans:'Inter',sans-serif;
+  --font-display:'Inter',sans-serif;
 }
 html{scroll-behavior:smooth}
 body{background:var(--grey-bg);color:var(--white);font-family:var(--font-sans);line-height:1.65;overflow-x:hidden}
@@ -46,14 +46,33 @@ body{background:var(--grey-bg);color:var(--white);font-family:var(--font-sans);l
   border-radius:50%;
   filter:blur(110px);
   will-change:transform,background;
-  transition:background 1.4s ease, opacity 1.2s ease;
 }
 .bg-fx-blob--a{top:-14%;left:-10%;opacity:0.4;background:radial-gradient(circle,var(--gold) 0%,transparent 70%)}
 .bg-fx-blob--b{bottom:-18%;right:-12%;width:40vw;height:40vw;opacity:0.35;background:radial-gradient(circle,var(--maroon-light) 0%,transparent 70%)}
 .bg-fx-blob--c{top:38%;left:58%;width:34vw;height:34vw;opacity:0.28;background:radial-gradient(circle,var(--blue-light) 0%,transparent 70%)}
-@media (max-width:768px){.bg-fx-blob{filter:blur(70px)}}
+.bg-fx-cursor{
+  position:fixed;top:0;left:0;z-index:-1;
+  width:340px;height:340px;
+  margin:-170px 0 0 -170px;
+  border-radius:50%;
+  filter:blur(100px);
+  opacity:0.22;
+  pointer-events:none;
+  mix-blend-mode:screen;
+  background:radial-gradient(circle,var(--gold-light) 0%,transparent 72%);
+  will-change:transform;
+}
+.bg-fx-spark{
+  position:fixed;inset:0;z-index:-1;
+  pointer-events:none;
+  width:100vw;height:100vh;
+  filter:blur(1.8px);
+  opacity:0.7;
+}
+@media (max-width:768px),(hover:none){.bg-fx-cursor,.bg-fx-spark{display:none}}
 @media (prefers-reduced-motion: reduce){
   .bg-fx,.bg-fx-blob{transition:none!important}
+  .bg-fx-cursor,.bg-fx-spark{display:none}
 }
 
 /* NAV */
@@ -150,7 +169,6 @@ nav.scrolled{padding:0.85rem 3rem;box-shadow:0 8px 30px rgba(0,0,0,0.25)}
   font-family:var(--font-serif);
   font-size:1rem;
   font-weight:700;
-  font-style:italic;
   text-transform:none;
   color:var(--gold);
   letter-spacing:0.06em;
@@ -195,7 +213,7 @@ nav.scrolled{padding:0.85rem 3rem;box-shadow:0 8px 30px rgba(0,0,0,0.25)}
   gap:2rem;
   padding-bottom:2rem;
 }
-.hero-bg-line{display:none;}'
+.hero-bg-line{display:none;}
 
 .hero-glow{
   position:absolute;
@@ -230,7 +248,7 @@ nav.scrolled{padding:0.85rem 3rem;box-shadow:0 8px 30px rgba(0,0,0,0.25)}
 .hero-name .line:nth-child(1){animation-delay:0.35s}
 .hero-name .line:nth-child(2){animation-delay:0.5s}
 .hero-name .first{color:var(--white);font-size:0.77em}
-.hero-name .last{color:var(--gold);font-style:italic;font-size:1.32em;line-height:1.1}
+.hero-name .last{color:var(--gold);font-weight:800;font-size:1.32em;line-height:1.1}
 
 .hero-title{
   font-family:var(--font-display);
@@ -379,10 +397,10 @@ nav.scrolled{padding:0.85rem 3rem;box-shadow:0 8px 30px rgba(0,0,0,0.25)}
   line-height:1.15;
   margin-bottom:3rem;
 }
-.section-heading em{font-style:italic;color:var(--gold)}
+.section-heading em{font-style:normal;font-weight:800;color:var(--gold)}
 .amp{
   font-family:var(--font-serif);
-  font-style:italic;
+  font-style:normal;
   font-weight:400;
   color:var(--maroon-light);
   padding:0 0.05em;
@@ -633,7 +651,7 @@ body.fa .cert-tags{flex-direction:row-reverse}
 .url-add-hint{font-size:0.82rem;color:var(--muted);margin-bottom:0.75rem;line-height:1.6}
 .url-add-row{display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center}
 
-.portfolio-empty{text-align:center;padding:2rem;color:var(--muted);font-size:0.88rem;font-style:italic}
+.portfolio-empty{text-align:center;padding:2rem;color:var(--muted);font-size:0.88rem}
 .portfolio-note{font-size:0.78rem;color:#565b66;margin-top:1rem;text-align:center}
 
 /* CONTACT */
@@ -657,7 +675,7 @@ footer{border-top:1px solid var(--grey-border);padding:2rem 6rem;display:flex;al
   border-top:1px solid rgba(255,255,255,0.04);
   margin-top:0.25rem;
 }
-.footer-mark{font-family:var(--font-serif);font-style:italic;font-size:1rem;color:var(--gold)}
+.footer-mark{font-family:var(--font-serif);font-weight:700;font-size:1rem;color:var(--gold)}
 .footer-copy{font-size:0.75rem;color:var(--muted);letter-spacing:0.04em}
 
 /* ANIMATIONS */
@@ -687,13 +705,17 @@ footer{border-top:1px solid var(--grey-border);padding:2rem 6rem;display:flex;al
   footer{padding:2rem 2rem;flex-direction:column;text-align:center}
   .scores-grid{grid-template-columns:1fr 1fr}
 }
+@media(max-width:380px){
+  .section{padding:3.5rem 1.25rem}
+  #hero{padding:6.5rem 1.25rem 2.5rem}
+}
 
 /* ── FARSI / RTL SUPPORT ───────────────────────────────── */
 :root[lang='fa'] {
-  --font-serif:'Fraunces',serif;
+  --font-serif:'Vazirmatn',sans-serif;
   --font-sans:'Vazirmatn',sans-serif;
   --font-display:'Vazirmatn',sans-serif;
-  --font-fa-display:'Lalezar',cursive;
+  --font-fa-display:'Vazirmatn',sans-serif;
 }
 [lang='fa'] body,
 body.fa {
@@ -755,15 +777,15 @@ body.fa .hero-name { text-align:center; }
 body.fa .hero-content { align-items:center; }
 body.fa .hero-text { text-align:center; }
 body.fa .hero-name {
-  font-family:'Lalezar', cursive;
-  font-weight:400;
+  font-family:'Vazirmatn', sans-serif;
+  font-weight:700;
   font-style:normal;
   letter-spacing:0;
   line-height:1.5;
 }
 body.fa .section-heading {
-  font-family:'Lalezar', cursive;
-  font-weight:400;
+  font-family:'Vazirmatn', sans-serif;
+  font-weight:700;
   letter-spacing:0;
   line-height:1.45;
 }
@@ -772,8 +794,8 @@ body.fa .nav-mark {
   letter-spacing:0.04em;
 }
 body.fa .footer-mark {
-  font-family:'Lalezar', cursive;
-  font-weight:400;
+  font-family:'Vazirmatn', sans-serif;
+  font-weight:600;
   font-style:normal;
 }
 body.fa #about .section-heading,
@@ -818,10 +840,9 @@ body.fa .hero-name .line {
 #preloader.hidden{opacity:0;visibility:hidden;pointer-events:none}
 .pre-inner{text-align:center}
 .pre-logo{
-  font-family:'Fraunces',serif;
-  font-style:italic;
+  font-family:'Inter',sans-serif;
   font-size:clamp(1.6rem,4.5vw,2.6rem);
-  font-weight:700;
+  font-weight:800;
   color:var(--gold);
   letter-spacing:0.03em;
   line-height:1.25;
@@ -998,6 +1019,8 @@ model-viewer {
   <div class="bg-fx-blob bg-fx-blob--b" data-depth="26"></div>
   <div class="bg-fx-blob bg-fx-blob--c" data-depth="11"></div>
 </div>
+<div class="bg-fx-cursor" id="bgFxCursor" aria-hidden="true"></div>
+<canvas class="bg-fx-spark" id="bgFxSpark" aria-hidden="true"></canvas>
 
 <!-- INTRO PRELOADER -->
 <div id="preloader">
@@ -1018,8 +1041,8 @@ model-viewer {
       <li><a href="#education">Education</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#certificates">Certificates</a></li>
-      <li><a href="#projects">Projects</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="lang-toggle">
@@ -1040,8 +1063,9 @@ model-viewer {
   <a href="#experience"   onclick="closeMobileMenu()">Experience</a>
   <a href="#education"    onclick="closeMobileMenu()">Education</a>
   <a href="#skills"       onclick="closeMobileMenu()">Skills</a>
-  <a href="#portfolio"    onclick="closeMobileMenu()">Portfolio</a>
   <a href="#certificates" onclick="closeMobileMenu()">Certificates</a>
+  <a href="#portfolio"    onclick="closeMobileMenu()">Portfolio</a>
+  <a href="#projects"     onclick="closeMobileMenu()">Projects</a>
   <a href="#contact"      onclick="closeMobileMenu()">Contact</a>
   <div class="nav-mobile-lang">
     <span>Language:</span>
@@ -1210,10 +1234,10 @@ model-viewer {
     </div>
     <div class="skill-group stagger-item">
       <div class="skill-group-name">Development</div>
+      <div class="skill-row"><span class="skill-name">Python</span><span class="skill-lvl lvl-elem">Elementary</span></div>
       <div class="skill-row"><span class="skill-name">Arduino IDE</span><span class="skill-lvl lvl-basic">Basic</span></div>
       <div class="skill-row"><span class="skill-name">Visual Studio Code</span><span class="skill-lvl lvl-basic">Basic</span></div>
       <div class="skill-row"><span class="skill-name">VHDL</span><span class="skill-lvl lvl-basic">Basic</span></div>
-      <div class="skill-row"><span class="skill-name">Python</span><span class="skill-lvl lvl-elem">Elementary</span></div>
       <div class="skill-row"><span class="skill-name">C Programming</span><span class="skill-lvl lvl-basic">Very Basic</span></div>
     </div>
     <div class="skill-group stagger-item">
@@ -1838,48 +1862,170 @@ window.addEventListener('DOMContentLoaded', () => {
   const bgFx = document.getElementById('bgFx');
   if (!bgFx) return;
   const blobs = Array.from(bgFx.querySelectorAll('.bg-fx-blob'));
+  const cursorGlow = document.getElementById('bgFxCursor');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(hover: none)').matches;
+  const active = !reduceMotion && !isTouch;
 
-  if (!reduceMotion && !isTouch) {
-    let targetX = 0, targetY = 0, curX = 0, curY = 0;
+  /* ---- color helpers ---- */
+  const hexToRgb = hex => {
+    const n = parseInt(hex.slice(1), 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  };
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const lerpColor = (c1, c2, t) => [
+    Math.round(lerp(c1[0], c2[0], t)),
+    Math.round(lerp(c1[1], c2[1], t)),
+    Math.round(lerp(c1[2], c2[2], t)),
+  ];
+  const C = {
+    gold: hexToRgb('#C9A84C'),
+    goldLight: hexToRgb('#E2C06E'),
+    maroonLight: hexToRgb('#8B2A40'),
+    blueLight: hexToRgb('#7AB3D4'),
+    orange: hexToRgb('#D4602A'),
+  };
+  const tracks = [
+    [C.gold, C.maroonLight, C.blueLight, C.orange, C.gold],
+    [C.blueLight, C.gold, C.maroonLight, C.goldLight, C.blueLight],
+    [C.maroonLight, C.blueLight, C.orange, C.gold, C.maroonLight],
+  ];
+  const colorAt = (track, progress) => {
+    const segs = track.length - 1;
+    const pos = Math.min(Math.max(progress, 0), 1) * segs;
+    const idx = Math.min(Math.floor(pos), segs - 1);
+    return lerpColor(track[idx], track[idx + 1], pos - idx);
+  };
+
+  /* ---- continuous scroll progress (smooth, no thresholds) ---- */
+  let scrollProgress = 0;
+  const updateScrollProgress = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    scrollProgress = max > 0 ? Math.min(Math.max(window.scrollY / max, 0), 1) : 0;
+  };
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  updateScrollProgress();
+
+  /* ---- magnetic tilt + a soft, seamless cursor highlight ---- */
+  let targetX = 0, targetY = 0, curX = 0, curY = 0;
+  let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+  let cursorX = mouseX, cursorY = mouseY;
+
+  if (active) {
     window.addEventListener('mousemove', e => {
-      targetX = (e.clientX / window.innerWidth  - 0.5) * 2; // -1..1
-      targetY = (e.clientY / window.innerHeight - 0.5) * 2; // -1..1
+      targetX = (e.clientX / window.innerWidth - 0.5) * 2;
+      targetY = (e.clientY / window.innerHeight - 0.5) * 2;
+      mouseX = e.clientX;
+      mouseY = e.clientY;
     });
-    (function raf(){
-      curX += (targetX - curX) * 0.06;
-      curY += (targetY - curY) * 0.06;
-      bgFx.style.transform = `rotateX(${(-curY*4).toFixed(2)}deg) rotateY(${(curX*4).toFixed(2)}deg)`;
-      blobs.forEach(b => {
-        const depth = parseFloat(b.dataset.depth) || 20;
-        b.style.transform = `translate3d(${(curX*depth).toFixed(1)}px, ${(curY*depth).toFixed(1)}px, 0)`;
-      });
-      requestAnimationFrame(raf);
-    })();
   }
 
-  /* Contrasting palette that cross-fades between sections while scrolling */
-  const palette = [
-    ['var(--gold)','var(--maroon-light)','var(--blue-light)'],
-    ['var(--blue-light)','var(--gold)','var(--maroon-light)'],
-    ['var(--maroon-light)','var(--blue-light)','var(--orange)'],
-    ['var(--orange)','var(--gold)','var(--blue-light)'],
-    ['var(--gold)','var(--blue-light)','var(--maroon-light)'],
-  ];
-  const sections = Array.from(document.querySelectorAll('section[id]'));
-  const colorObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const idx = sections.indexOf(e.target) % palette.length;
-        const [c1,c2,c3] = palette[idx];
-        blobs[0].style.background = `radial-gradient(circle, ${c1} 0%, transparent 70%)`;
-        blobs[1].style.background = `radial-gradient(circle, ${c2} 0%, transparent 70%)`;
-        blobs[2].style.background = `radial-gradient(circle, ${c3} 0%, transparent 70%)`;
+  /* ---- a handful of soft, blurred sparks — sparse, never busy ---- */
+  const sparkCanvas = document.getElementById('bgFxSpark');
+  const sctx = sparkCanvas ? sparkCanvas.getContext('2d') : null;
+  const SPARK_COLORS = ['#E2C06E', '#F0D68A', '#C9A84C', '#7AB3D4', '#9BC9E3', '#5E9FC7'];
+  let sparks = [];
+  let nextSparkAt = 0;
+  const dpr = window.devicePixelRatio || 1;
+  const resizeSparkCanvas = () => {
+    if (!sparkCanvas) return;
+    sparkCanvas.width = window.innerWidth * dpr;
+    sparkCanvas.height = window.innerHeight * dpr;
+    sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+  if (sctx) { resizeSparkCanvas(); window.addEventListener('resize', resizeSparkCanvas); }
+
+  const buildBoltPoints = (x1, y1, x2, y2, segments, jitter) => {
+    const len = Math.hypot(x2 - x1, y2 - y1) || 1;
+    const px = -(y2 - y1) / len, py = (x2 - x1) / len; // perpendicular unit vector
+    const points = [{ x: x1, y: y1 }];
+    for (let i = 1; i < segments; i++) {
+      const t = i / segments;
+      const baseX = x1 + (x2 - x1) * t;
+      const baseY = y1 + (y2 - y1) * t;
+      // jitter tapers toward the ends so it reads as one bolt, not noise
+      const taper = Math.sin(t * Math.PI);
+      const off = (Math.random() - 0.5) * jitter * taper;
+      points.push({ x: baseX + px * off, y: baseY + py * off });
+    }
+    points.push({ x: x2, y: y2 });
+    return points;
+  };
+
+  const maybeSpawnSpark = now => {
+    if (!sctx || now < nextSparkAt) return;
+    // frequent little bolts, right at the live cursor position — no lag
+    nextSparkAt = now + 180 + Math.random() * 320;
+    const count = 2 + Math.floor(Math.random() * 3); // 2–4 bolts per burst
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const len = 38 + Math.random() * 60; // longer, more visible
+      const ox = (Math.random() - 0.5) * 46;
+      const oy = (Math.random() - 0.5) * 46;
+      const x1 = mouseX + ox, y1 = mouseY + oy;
+      const x2 = x1 + Math.cos(angle) * len, y2 = y1 + Math.sin(angle) * len;
+      const segments = 5 + Math.floor(Math.random() * 3);
+      const points = buildBoltPoints(x1, y1, x2, y2, segments, 16);
+      const color = SPARK_COLORS[Math.floor(Math.random() * SPARK_COLORS.length)];
+      const life = 1, decay = 0.05 + Math.random() * 0.03; // quick, snappy flicker like real lightning
+      sparks.push({ points, color, life, decay });
+      // occasional small fork branching off the main bolt
+      if (Math.random() < 0.4 && segments > 4) {
+        const forkFrom = 1 + Math.floor(Math.random() * (segments - 3));
+        const origin = points[forkFrom];
+        const forkAngle = angle + (Math.random() - 0.5) * 1.6;
+        const forkLen = len * (0.3 + Math.random() * 0.3);
+        const fx = origin.x + Math.cos(forkAngle) * forkLen;
+        const fy = origin.y + Math.sin(forkAngle) * forkLen;
+        sparks.push({
+          points: buildBoltPoints(origin.x, origin.y, fx, fy, 3, 8),
+          color, life, decay: decay + 0.01,
+        });
       }
+    }
+  };
+
+  (function raf() {
+    const now = Date.now();
+    if (active) {
+      curX += (targetX - curX) * 0.06;
+      curY += (targetY - curY) * 0.06;
+      bgFx.style.transform = `rotateX(${(-curY * 4).toFixed(2)}deg) rotateY(${(curX * 4).toFixed(2)}deg)`;
+      blobs.forEach(b => {
+        const depth = parseFloat(b.dataset.depth) || 20;
+        b.style.transform = `translate3d(${(curX * depth).toFixed(1)}px, ${(curY * depth).toFixed(1)}px, 0)`;
+      });
+      // gentle, slow-easing follow — no flicker, no snap
+      cursorX += (mouseX - cursorX) * 0.07;
+      cursorY += (mouseY - cursorY) * 0.07;
+      if (cursorGlow) cursorGlow.style.transform = `translate3d(${cursorX.toFixed(1)}px, ${cursorY.toFixed(1)}px, 0)`;
+
+      if (sctx) {
+        sctx.clearRect(0, 0, sparkCanvas.width, sparkCanvas.height);
+        maybeSpawnSpark(now);
+        sparks = sparks.filter(s => s.life > 0);
+        sparks.forEach(s => {
+          sctx.globalAlpha = Math.max(s.life, 0) * 0.75;
+          sctx.strokeStyle = s.color;
+          sctx.shadowColor = s.color;
+          sctx.shadowBlur = 8;
+          sctx.lineWidth = 1.4;
+          sctx.beginPath();
+          sctx.moveTo(s.points[0].x, s.points[0].y);
+          for (let i = 1; i < s.points.length; i++) sctx.lineTo(s.points[i].x, s.points[i].y);
+          sctx.stroke();
+          s.life -= s.decay;
+        });
+        sctx.globalAlpha = 1;
+      }
+    }
+    // smooth per-frame color blend tied to scroll position — no jumps
+    tracks.forEach((track, i) => {
+      const [r, g, b] = colorAt(track, scrollProgress);
+      if (blobs[i]) blobs[i].style.background = `radial-gradient(circle, rgb(${r},${g},${b}) 0%, transparent 70%)`;
     });
-  }, {threshold:0.45});
-  sections.forEach(s => colorObs.observe(s));
+    requestAnimationFrame(raf);
+  })();
 })();
 
 /* 3D MAGNETIC TILT */
