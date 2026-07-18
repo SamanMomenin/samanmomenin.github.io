@@ -31,6 +31,31 @@
 html{scroll-behavior:smooth}
 body{background:var(--grey-bg);color:var(--white);font-family:var(--font-sans);line-height:1.65;overflow-x:hidden}
 
+/* SITE-WIDE MAGNETIC 3D BACKGROUND */
+.bg-fx{
+  position:fixed;inset:0;z-index:-1;
+  overflow:hidden;pointer-events:none;
+  perspective:1400px;
+  transform-style:preserve-3d;
+  will-change:transform;
+}
+.bg-fx-blob{
+  position:absolute;
+  width:48vw;height:48vw;
+  max-width:680px;max-height:680px;
+  border-radius:50%;
+  filter:blur(110px);
+  will-change:transform,background;
+  transition:background 1.4s ease, opacity 1.2s ease;
+}
+.bg-fx-blob--a{top:-14%;left:-10%;opacity:0.4;background:radial-gradient(circle,var(--gold) 0%,transparent 70%)}
+.bg-fx-blob--b{bottom:-18%;right:-12%;width:40vw;height:40vw;opacity:0.35;background:radial-gradient(circle,var(--maroon-light) 0%,transparent 70%)}
+.bg-fx-blob--c{top:38%;left:58%;width:34vw;height:34vw;opacity:0.28;background:radial-gradient(circle,var(--blue-light) 0%,transparent 70%)}
+@media (max-width:768px){.bg-fx-blob{filter:blur(70px)}}
+@media (prefers-reduced-motion: reduce){
+  .bg-fx,.bg-fx-blob{transition:none!important}
+}
+
 /* NAV */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
@@ -885,7 +910,7 @@ body.fa .hero-name .line {
 
 
 /* 3D MAGNETIC TILT */
-.exp-block,.edu-card,.score-card,.skill-group,.strength,.cert-card,.contact-card,.proj-card {
+.exp-block,.edu-card,.score-card,.skill-group,.strength,.cert-card,.contact-card {
   transform-style: preserve-3d;
   transition: transform 0.1s ease, box-shadow 0.3s ease, border-color 0.3s;
 }
@@ -965,9 +990,14 @@ model-viewer {
 }
 
 </style>
-<script type="module" src="https://unpkg.com/@google/model-viewer@3.4.0/dist/model-viewer.min.js"></script>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js"></script>
 </head>
 <body>
+<div class="bg-fx" id="bgFx" aria-hidden="true">
+  <div class="bg-fx-blob bg-fx-blob--a" data-depth="16"></div>
+  <div class="bg-fx-blob bg-fx-blob--b" data-depth="26"></div>
+  <div class="bg-fx-blob bg-fx-blob--c" data-depth="11"></div>
+</div>
 
 <!-- INTRO PRELOADER -->
 <div id="preloader">
@@ -1182,21 +1212,21 @@ model-viewer {
       <div class="skill-group-name">Development</div>
       <div class="skill-row"><span class="skill-name">Arduino IDE</span><span class="skill-lvl lvl-basic">Basic</span></div>
       <div class="skill-row"><span class="skill-name">Visual Studio Code</span><span class="skill-lvl lvl-basic">Basic</span></div>
-      <div class="skill-row"><span class="skill-name">C Programming</span><span class="skill-lvl lvl-basic">Very Basic</span></div>
       <div class="skill-row"><span class="skill-name">VHDL</span><span class="skill-lvl lvl-basic">Basic</span></div>
       <div class="skill-row"><span class="skill-name">Python</span><span class="skill-lvl lvl-elem">Elementary</span></div>
+      <div class="skill-row"><span class="skill-name">C Programming</span><span class="skill-lvl lvl-basic">Very Basic</span></div>
     </div>
     <div class="skill-group stagger-item">
       <div class="skill-group-name">Hardware</div>
       <div class="skill-row"><span class="skill-name">Soldering</span><span class="skill-lvl lvl-prof">Proficient</span></div>
-      <div class="skill-row"><span class="skill-name">Electronic Components</span><span class="skill-lvl lvl-prof">Intermediate</span></div>
       <div class="skill-row"><span class="skill-name">Research Methods</span><span class="skill-lvl lvl-prof">Proficient</span></div>
+      <div class="skill-row"><span class="skill-name">Electronic Components</span><span class="skill-lvl lvl-prof">Intermediate</span></div>
     </div>
     <div class="skill-group stagger-item">
       <div class="skill-group-name">Creative &amp; Digital</div>
+      <div class="skill-row"><span class="skill-name">Canva / CapCut / Premiere</span><span class="skill-lvl lvl-prof">Proficient</span></div>
       <div class="skill-row"><span class="skill-name">Adobe Lightroom</span><span class="skill-lvl lvl-prof">Intermediate</span></div>
       <div class="skill-row"><span class="skill-name">MS Office (Word/PPT)</span><span class="skill-lvl lvl-prof">Intermediate</span></div>
-      <div class="skill-row"><span class="skill-name">Canva / CapCut / Premiere</span><span class="skill-lvl lvl-prof">Proficient</span></div>
     </div>
   </div>
 </section>
@@ -1315,8 +1345,8 @@ model-viewer {
   <div class="proj-card reveal">
     <div class="proj-status" id="proj1-status">Completed &middot; 2024</div>
     <div class="proj-title" id="proj1-title">Reactionary LED Matrix Controller</div>
-    <div class="proj-role" id="proj1-role">Internship Project &mdash; IPCO, Iran Khodro Powertrain Co.</div>
-    <p class="proj-desc" id="proj1-desc">This is a reactionary module, designed for an athlete&#39;s reactionary exercise, an elderly&#39;s rehabilitation exercise, or simply an amusement park game. It was both simulated and functioned correctly on Proteus Professional 8, and implemented with an Arduino UNO on an actual board and functioned correctly. Below are both the simulation schematic and the actual board&#39;s 3D model.</p>
+    <div class="proj-role" id="proj1-role">B.Sc. Final Project</div>
+    <p class="proj-desc" id="proj1-desc">This reactionary module was designed for an athlete&#39;s reaction training, an elderly person&#39;s rehabilitation exercises, or simply as an amusement park game. It was successfully simulated in Proteus Professional 8, then built and tested on an actual Arduino UNO board. Below are the simulation schematic and the 3D model of the physical board.</p>
     <div class="proj-tags">
       <span class="proj-tag">Arduino UNO</span>
       <span class="proj-tag">Proteus Pro 8</span>
@@ -1594,7 +1624,7 @@ function setLang(lang) {
       'experience': 'کجا <em>مشارکت</em> داشته‌ام',
       'education':  'پیشینه <em>تحصیلی</em>',
       'skills':     '<em>جعبه‌ابزار</em> تخصصی',
-      'strengths':  'چه چیزی <em>می‌آورم</em>',
+      'strengths':  'چه چیزی <em>اضافه میکنم</em>',
       'portfolio':  'عکاسی <span class="amp">&amp;</span> <em>فیلم‌سازی</em>',
       'contact':    '<em>ارتباط</em> برقرار کنیم',
     }
@@ -1773,39 +1803,87 @@ function setLang(lang) {
   // Scroll cue
   const scrollSpan = document.querySelector('.scroll-cue span');
   if (scrollSpan) scrollSpan.textContent = lang === 'fa' ? 'اسکرول' : 'Scroll';
-}
-
-// On load, restore saved language
 
   // Projects section
   const _pt = document.getElementById('proj-tag');
-  if (_pt) _pt.textContent = lang === 'fa' ? '\u067e\u0631\u0648\u0698\u0647\u200c\u0647\u0627' : 'Projects';
+  if (_pt) _pt.textContent = lang === 'fa' ? 'پروژه‌ها' : 'Projects';
   const _ph = document.getElementById('proj-heading');
-  if (_ph) _ph.innerHTML = lang === 'fa' ? '\u067e\u0631\u0648\u0698\u0647\u200c\u0647\u0627\u06cc <em>\u0645\u0647\u0646\u062f\u0633\u06cc</em>' : 'Engineering <em>Projects</em>';
+  if (_ph) _ph.innerHTML = lang === 'fa' ? 'پروژه‌های <em>مهندسی</em>' : 'Engineering <em>Projects</em>';
   const _ps = document.getElementById('proj1-status');
-  if (_ps) _ps.textContent = lang === 'fa' ? '\u062a\u06a9\u0645\u06cc\u0644\u200c\u0634\u062f\u0647 \u00b7 \u06f1\u06f4\u06f0\u06f3' : 'Completed \u00b7 2024';
+  if (_ps) _ps.textContent = lang === 'fa' ? 'تکمیل‌شده · ۱۴۰۳' : 'Completed · 2024';
   const _pti = document.getElementById('proj1-title');
-  if (_pti) _pti.textContent = lang === 'fa' ? '\u06a9\u0646\u062a\u0631\u0644\u0631 \u0645\u0627\u062a\u0631\u06cc\u0633 LED \u0648\u0627\u06a9\u0646\u0634\u06cc' : 'Reactionary LED Matrix Controller';
+  if (_pti) _pti.textContent = lang === 'fa' ? 'کنترلر ماتریس LED واکنشی' : 'Reactionary LED Matrix Controller';
   const _pr = document.getElementById('proj1-role');
-  if (_pr) _pr.textContent = lang === 'fa' ? '\u067e\u0631\u0648\u0698\u0647 \u06a9\u0627\u0631\u0622\u0645\u0648\u0632\u06cc \u2014 \u0627\u06cc\u067e\u06a9\u0648\u060c \u0634\u0631\u06a9\u062a \u067e\u0627\u0648\u0631\u062a\u0631\u06cc\u0646 \u0627\u06cc\u0631\u0627\u0646 \u062e\u0648\u062f\u0631\u0648' : 'Internship Project \u2014 IPCO, Iran Khodro Powertrain Co.';
+  if (_pr) _pr.textContent = lang === 'fa' ? 'پروژه پایانی کارشناسی' : 'B.Sc. Final Project';
   const _pd = document.getElementById('proj1-desc');
-  if (_pd) _pd.textContent = lang === 'fa' ? '\u0627\u06cc\u0646 \u06cc\u06a9 \u0645\u0627\u062f\u0648\u0644 \u0648\u0627\u06a9\u0646\u0634\u06cc \u0627\u0633\u062a \u06a9\u0647 \u0628\u0631\u0627\u06cc \u062a\u0645\u0631\u06cc\u0646 \u0648\u0627\u06a9\u0646\u0634\u06cc \u0648\u0631\u0632\u0634\u06a9\u0627\u0631\u060c \u062a\u0648\u0627\u0646\u0628\u062e\u0634\u06cc \u0633\u0627\u0644\u0645\u0646\u062f\u0627\u0646 \u06cc\u0627 \u0635\u0631\u0641\u0627\u064b \u06cc\u06a9 \u0628\u0627\u0632\u06cc \u0634\u0647\u0631\u0628\u0627\u0632\u06cc \u0637\u0631\u0627\u062d\u06cc \u0634\u062f\u0647 \u0627\u0633\u062a. \u0647\u0645 \u062f\u0631 \u0645\u062d\u06cc\u0637 \u0634\u0628\u06cc\u0647\u200c\u0633\u0627\u0632\u06cc Proteus Professional 8 \u0628\u0647 \u062f\u0631\u0633\u062a\u06cc \u06a9\u0627\u0631 \u06a9\u0631\u062f \u0648 \u0647\u0645 \u0628\u0627 Arduino UNO \u0631\u0648\u06cc \u0628\u0631\u062f \u0648\u0627\u0642\u0639\u06cc \u067e\u06cc\u0627\u062f\u0647\u200c\u0633\u0627\u0632\u06cc \u0634\u062f \u0648 \u0628\u0647 \u062f\u0631\u0633\u062a\u06cc \u06a9\u0627\u0631 \u06a9\u0631\u062f. \u062f\u0631 \u0632\u06cc\u0631 \u0647\u0645 \u0634\u0645\u0627\u062a\u06cc\u06a9 \u0634\u0628\u06cc\u0647\u200c\u0633\u0627\u0632\u06cc \u0648 \u0647\u0645 \u0645\u062f\u0644 \u0633\u0647\u200c\u0628\u0639\u062f\u06cc \u0628\u0631\u062f \u0648\u0627\u0642\u0639\u06cc \u0622\u0645\u062f\u0647 \u0627\u0633\u062a.' : 'This is a reactionary module, designed for an athlete\'s reactionary exercise, an elderly\'s rehabilitation exercise, or simply an amusement park game. It was both simulated and functioned correctly on Proteus Professional 8, and implemented with an Arduino UNO on an actual board and functioned correctly. Below are both the simulation schematic and the actual board\'s 3D model.';
+  if (_pd) _pd.textContent = lang === 'fa' ? 'این ماژول واکنشی برای تمرین واکنش ورزشکاران، تمرینات توان‌بخشی سالمندان، یا صرفاً به‌عنوان یک بازی شهربازی طراحی شده است. این پروژه با موفقیت در نرم‌افزار Proteus Professional 8 شبیه‌سازی شد و سپس با استفاده از Arduino UNO روی یک بورد واقعی ساخته و آزمایش شد. در ادامه، هم شماتیک شبیه‌سازی و هم مدل سه‌بعدی بورد واقعی آورده شده است.' : 'This reactionary module was designed for an athlete\'s reaction training, an elderly person\'s rehabilitation exercises, or simply as an amusement park game. It was successfully simulated in Proteus Professional 8, then built and tested on an actual Arduino UNO board. Below are the simulation schematic and the 3D model of the physical board.';
   const _pcs = document.getElementById('proj1-cap-sch');
-  if (_pcs) _pcs.textContent = lang === 'fa' ? '\u0634\u0645\u0627\u062a\u06cc\u06a9 Proteus \u2014 \u06a9\u0646\u062a\u0631\u0644\u0631 \u0645\u0627\u062a\u0631\u06cc\u0633 LED' : 'Proteus Schematic \u2014 Reactionary LED Matrix Controller';
+  if (_pcs) _pcs.textContent = lang === 'fa' ? 'شماتیک Proteus — کنترلر ماتریس LED' : 'Proteus Schematic — Reactionary LED Matrix Controller';
   const _pc3 = document.getElementById('proj1-cap-3d');
-  if (_pc3) _pc3.textContent = lang === 'fa' ? '\u0645\u062f\u0644 \u0633\u0647\u200c\u0628\u0639\u062f\u06cc \u2014 \u0628\u0631\u0627\u06cc \u0686\u0631\u062e\u0634 \u062f\u0631\u0627\u06af \u06a9\u0646\u06cc\u062f' : '3D Board Model \u2014 Drag to orbit \u00b7 Scroll to zoom';
+  if (_pc3) _pc3.textContent = lang === 'fa' ? 'مدل سه‌بعدی — برای چرخش درگ کنید' : '3D Board Model — Drag to orbit · Scroll to zoom';
   // Nav link
   document.querySelectorAll('a[href="#projects"]').forEach(a => {
-    a.textContent = lang === 'fa' ? '\u067e\u0631\u0648\u0698\u0647\u200c\u0647\u0627' : 'Projects';
+    a.textContent = lang === 'fa' ? 'پروژه‌ها' : 'Projects';
   });
+}
 
-  window.addEventListener('DOMContentLoaded', () => {
+// On load, restore saved language
+window.addEventListener('DOMContentLoaded', () => {
   const saved = localStorage.getItem('samanLang') || 'en';
   if (saved === 'fa') setLang('fa');
 });
 
+/* SITE-WIDE MAGNETIC 3D BACKGROUND */
+(() => {
+  const bgFx = document.getElementById('bgFx');
+  if (!bgFx) return;
+  const blobs = Array.from(bgFx.querySelectorAll('.bg-fx-blob'));
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouch = window.matchMedia('(hover: none)').matches;
+
+  if (!reduceMotion && !isTouch) {
+    let targetX = 0, targetY = 0, curX = 0, curY = 0;
+    window.addEventListener('mousemove', e => {
+      targetX = (e.clientX / window.innerWidth  - 0.5) * 2; // -1..1
+      targetY = (e.clientY / window.innerHeight - 0.5) * 2; // -1..1
+    });
+    (function raf(){
+      curX += (targetX - curX) * 0.06;
+      curY += (targetY - curY) * 0.06;
+      bgFx.style.transform = `rotateX(${(-curY*4).toFixed(2)}deg) rotateY(${(curX*4).toFixed(2)}deg)`;
+      blobs.forEach(b => {
+        const depth = parseFloat(b.dataset.depth) || 20;
+        b.style.transform = `translate3d(${(curX*depth).toFixed(1)}px, ${(curY*depth).toFixed(1)}px, 0)`;
+      });
+      requestAnimationFrame(raf);
+    })();
+  }
+
+  /* Contrasting palette that cross-fades between sections while scrolling */
+  const palette = [
+    ['var(--gold)','var(--maroon-light)','var(--blue-light)'],
+    ['var(--blue-light)','var(--gold)','var(--maroon-light)'],
+    ['var(--maroon-light)','var(--blue-light)','var(--orange)'],
+    ['var(--orange)','var(--gold)','var(--blue-light)'],
+    ['var(--gold)','var(--blue-light)','var(--maroon-light)'],
+  ];
+  const sections = Array.from(document.querySelectorAll('section[id]'));
+  const colorObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const idx = sections.indexOf(e.target) % palette.length;
+        const [c1,c2,c3] = palette[idx];
+        blobs[0].style.background = `radial-gradient(circle, ${c1} 0%, transparent 70%)`;
+        blobs[1].style.background = `radial-gradient(circle, ${c2} 0%, transparent 70%)`;
+        blobs[2].style.background = `radial-gradient(circle, ${c3} 0%, transparent 70%)`;
+      }
+    });
+  }, {threshold:0.45});
+  sections.forEach(s => colorObs.observe(s));
+})();
+
 /* 3D MAGNETIC TILT */
-document.querySelectorAll('.exp-block,.edu-card,.score-card,.skill-group,.strength,.cert-card,.contact-card,.proj-card').forEach(el => {
+document.querySelectorAll('.exp-block,.edu-card,.score-card,.skill-group,.strength,.cert-card,.contact-card').forEach(el => {
   el.addEventListener('mousemove', e => {
     const r = el.getBoundingClientRect();
     const x = (e.clientX - r.left - r.width  / 2) / r.width  * 12;
